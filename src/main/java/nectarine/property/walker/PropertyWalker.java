@@ -1,4 +1,6 @@
-package nectarine.core;
+package nectarine.property.walker;
+
+import nectarine.property.visitor.PropertyVisitor;
 
 public class PropertyWalker {
     private PropertyVisitor visitor;
@@ -12,8 +14,7 @@ public class PropertyWalker {
     }
 
     private void checkField(){
-        Class clazz;
-        clazz.getDeclaredMethod(name, onPropertVisit(class, name))
+
     }
 
 }

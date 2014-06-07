@@ -1,4 +1,4 @@
-package nectarine.core;
+package nectarine.util;
 
 public class User {
     private String firstName;

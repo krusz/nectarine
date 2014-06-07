@@ -1,55 +1,72 @@
 package nectarine.core;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+import nectarine.property.factory.PropertyFactory;
+import nectarine.property.factory.PropertyFactoryImpl;
+import nectarine.property.visitor.PropertyVisitor;
+import nectarine.property.visitor.PropertyVisitorImpl;
+import nectarine.property.walker.PropertyWalker;
+import nectarine.provider.Provider;
+import nectarine.provider.builder.ProviderBuilder;
+import nectarine.provider.builder.ProviderBuilderImpl;
+
+import java.util.List;
 
 public class Nectarine {
-    private Map<String, Provider> nameBindings;
-    private Map<Class, Provider> typeBindings;
-    private Map<Class, Map<String, Provider>> providers;
+    private PropertyWalker walker;
+    private PropertyVisitor visitor;
+    private PropertyFactory factory;
+    private ProviderBuilder builder;
 
-
-    public Nectarine(){
-        typeBindings = new HashMap<>();
-        nameBindings = new HashMap<>();
-        providers = new HashMap<>();
+    public Nectarine() {
+        builder = new ProviderBuilderImpl();
+        factory = new PropertyFactoryImpl();
+        walker = new PropertyWalker();
+        visitor = new PropertyVisitorImpl(factory);
+        walker.setVisitor(visitor);
     }
 
-    public <T> T create(Class<T> clazz){
-
-        PropertyWalker walker = new PropertyWalker();
-        walker.setVisitor(new PropertyVisitor() {
-            @Override
-            public void onPropertyVisit(Class clazz, String name, Method setter) {
-                dsadas();
-            }
-        });
-        walker.walk(clazz);
-
-
+    public <T> T create(Class<T> clazz) {
         try {
-            T obj = clazz.newInstance();
-            Field[] fields = clazz.get;
-            for (Field field : fields) {
-                field.set(obj, "asdasda");
-            }
+            final T obj = clazz.newInstance();
+            visitor.setObject(obj);
+            walker.walk(clazz);
             return obj;
         } catch (InstantiationException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
         return null;
     }
 
-    public <T> void fill(T object){
+    public <T> void fill(T object) {
 
     }
 
-    public Nectarine bind(Class type, Provider provider){
-        typeBindings.put(type, provider);
+    public <T> Nectarine bind(Class<T> clazz, Provider<T> provider) {
+        factory.bind(clazz, provider);
         return this;
     }
+
+    public <T> Nectarine bind(Class<T> clazz, List<T> list){
+        return bind(clazz, builder.build(list));
+    }
+
+    public <T> Nectarine bind(Class<T> clazz, T [] array){
+        return bind(clazz, builder.build(array));
+    }
+
+    public <T> Nectarine bind(String name, Provider<T> provider) {
+        factory.bind(name, provider);
+        return this;
+    }
+
+    public <T> Nectarine bind(String name, List<T> list){
+        return bind(name, builder.build(list));
+    }
+
+    public <T> Nectarine bind(String name, T [] array){
+        return bind(name, builder.build(array));
+    }
+
 }

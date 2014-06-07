@@ -1,5 +1,6 @@
 package nectarine.core;
 
+import nectarine.util.User;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertNotNull;
