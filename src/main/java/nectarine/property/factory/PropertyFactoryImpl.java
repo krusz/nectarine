@@ -1,5 +1,6 @@
 package nectarine.property.factory;
 
+import nectarine.provider.DefaultProviderMap;
 import nectarine.provider.PatternProvider;
 import nectarine.provider.Provider;
 
@@ -16,6 +17,7 @@ public class PropertyFactoryImpl implements PropertyFactory {
     private Map<Class, Map<String, Provider>> nameProviders = new HashMap<>();
     private Map<Class, Provider> typeProviders = new HashMap<>();
     private Map<Class, List<PatternProvider>> patternProviders = new HashMap<>();
+    private Map<Class, Provider> defaultProviders = new DefaultProviderMap();
 
     @Override
     public <T> T get(Class<T> clazz, String name) {
@@ -28,6 +30,10 @@ public class PropertyFactoryImpl implements PropertyFactory {
             return provider.get();
         }
         provider = getProviderByPattern(clazz, name);
+        if(provider != null){
+            return provider.get();
+        }
+        provider = getDefaultProvider(clazz);
         if(provider != null){
             return provider.get();
         }
@@ -44,6 +50,10 @@ public class PropertyFactoryImpl implements PropertyFactory {
             }
         }
         return null;
+    }
+
+    private <T> Provider<T> getDefaultProvider(Class<T> clazz){
+        return defaultProviders.get(clazz);
     }
 
     private <T> Provider<T> getProviderByType(Class<T> clazz) {
