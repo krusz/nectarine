@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class ShortProvider implements Provider<Short> {
     @Override
     public Short get() {
-        return null;
+        return 456;
     }
 }

@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class IntProvider implements Provider<Integer> {
     @Override
     public Integer get() {
-        return new Integer((int) (Math.random()*Integer.MAX_VALUE));
+        return (int) (Math.random() * Integer.MAX_VALUE);
     }
 }

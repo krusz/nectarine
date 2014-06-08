@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class BooleanProvider implements Provider<Boolean> {
     @Override
     public Boolean get() {
-        return new Boolean(true);
+        return true;
     }
 }

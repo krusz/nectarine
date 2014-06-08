@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class FloatProvider implements Provider<Float> {
     @Override
     public Float get() {
-        return null;
+        return 1.0f;
     }
 }

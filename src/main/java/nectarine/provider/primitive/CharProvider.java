@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class CharProvider implements Provider<Character> {
     @Override
     public Character get() {
-        return null;
+        return 'a';
     }
 }

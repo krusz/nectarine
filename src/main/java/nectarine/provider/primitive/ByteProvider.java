@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class ByteProvider implements Provider<Byte> {
     @Override
     public Byte get() {
-        return null;
+        return (byte)(Math.random() * 10);
     }
 }

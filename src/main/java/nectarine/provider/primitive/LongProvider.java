@@ -8,6 +8,6 @@ import nectarine.provider.Provider;
 public class LongProvider implements Provider<Long> {
     @Override
     public Long get() {
-        return null;
+        return 123L;
     }
 }
