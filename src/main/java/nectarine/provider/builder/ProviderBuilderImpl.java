@@ -30,4 +30,14 @@ public class ProviderBuilderImpl implements ProviderBuilder {
             }
         };
     }
+
+    @Override
+    public <T> Provider<T> build(final T t) {
+        return new Provider<T>() {
+            @Override
+            public T get() {
+                return t;
+            }
+        };
+    }
 }

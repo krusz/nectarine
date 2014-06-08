@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProviderBuilder {
     <T> Provider<T> build(List<T> list);
     <T> Provider<T> build(T [] array);
+    <T> Provider<T> build(T t);
 }

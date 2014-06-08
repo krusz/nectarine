@@ -7,6 +7,6 @@ import nectarine.provider.Provider;
  */
 public interface PropertyFactory {
     <T> T get(Class<T> clazz, String name);
-    <T> void bind(Class<T> clazz, Provider<T> provider);
+    <T> void bind(Provider<T> provider);
     <T> void bind(String name, Provider<T> provider);
 }

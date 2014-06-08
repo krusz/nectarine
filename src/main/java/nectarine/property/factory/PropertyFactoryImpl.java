@@ -59,7 +59,7 @@ public class PropertyFactoryImpl implements PropertyFactory {
     }
 
     @Override
-    public <T> void bind(Class<T> clazz, Provider<T> provider) {
+    public <T> void bind(Provider<T> provider) {
         typeProviders.put(getProviderTypeClass(provider), provider);
     }
 

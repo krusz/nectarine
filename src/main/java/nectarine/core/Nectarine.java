@@ -43,17 +43,21 @@ public class Nectarine {
 
     }
 
-    public <T> Nectarine bind(Class<T> clazz, Provider<T> provider) {
-        factory.bind(clazz, provider);
+    public <T> Nectarine bind(Provider<T> provider) {
+        factory.bind(provider);
         return this;
     }
 
-    public <T> Nectarine bind(Class<T> clazz, List<T> list){
-        return bind(clazz, builder.build(list));
+    public <T> Nectarine bind(List<T> list){
+        return bind(builder.build(list));
     }
 
-    public <T> Nectarine bind(Class<T> clazz, T [] array){
-        return bind(clazz, builder.build(array));
+    public <T> Nectarine bind(T [] array){
+        return bind(builder.build(array));
+    }
+
+    public <T> Nectarine bind(T t){
+        return bind(builder.build(t));
     }
 
     public <T> Nectarine bind(String name, Provider<T> provider) {
@@ -67,6 +71,10 @@ public class Nectarine {
 
     public <T> Nectarine bind(String name, T [] array){
         return bind(name, builder.build(array));
+    }
+
+    public <T> Nectarine bind(String name, T t){
+        return bind(name, builder.build(t));
     }
 
 }

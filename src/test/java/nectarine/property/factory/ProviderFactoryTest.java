@@ -31,7 +31,7 @@ public class ProviderFactoryTest {
     }
 
     @Test
-    public void shouldReturnStringByGivenProviderWhenBindToStringClass() {
+    public void shouldReturnGivenStringWhenBindToStringProvider() {
         //given
         Provider<String> firstnameProvider = new Provider<String>(){
 
@@ -42,7 +42,7 @@ public class ProviderFactoryTest {
         };
 
         //when
-        factory.bind(String.class, firstnameProvider);
+        factory.bind(firstnameProvider);
 
         //then
         assertEquals("Kamil", factory.get(String.class, "firstname"));
