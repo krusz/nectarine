@@ -1,4 +1,6 @@
-package nectarine.provider;
+package nectarine.provider.pattern;
+
+import nectarine.provider.Provider;
 
 import java.util.ArrayList;
 import java.util.List;

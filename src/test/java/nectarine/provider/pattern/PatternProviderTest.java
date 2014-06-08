@@ -1,4 +1,4 @@
-package nectarine.provider;
+package nectarine.provider.pattern;
 
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import static junit.framework.Assert.assertTrue;
 /**
  * Created by kamil on 2014-06-07.
  */
-public class ProviderTest {
+public class PatternProviderTest {
 
     @Test
     public void shouldProvidesForAllNamesWhichMatchesAddedPattern() {

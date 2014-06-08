@@ -1,8 +1,8 @@
 package nectarine.property.factory;
 
 import nectarine.provider.DefaultProviderMap;
-import nectarine.provider.PatternProvider;
 import nectarine.provider.Provider;
+import nectarine.provider.pattern.PatternProvider;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
